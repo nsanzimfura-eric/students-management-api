@@ -1,13 +1,27 @@
 package com.example.demo.student;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+@Entity
+@Table
 public class Student {
+    @Id
+    @SequenceGenerator(
+            name = "student_sequence",
+            sequenceName = "student_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
     private Long id;
     private String names;
     private LocalDate dob;
     private int age;
     private String email;
+
 
 //constructors
     public Student() {
