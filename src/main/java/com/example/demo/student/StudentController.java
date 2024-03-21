@@ -15,22 +15,23 @@ public class StudentController {
     public StudentController(StudentService studentServices) {
         this.studentServices = studentServices;
     }
-
+//get all users/students
     @GetMapping
     public List<Student> getListOfStudents(){
         return  this.studentServices.getStudents();
     }
-
+//add user
     @PostMapping
     public  void  registerNewStudent (@RequestBody Student student){
         studentServices.addNewStudent(student);
 
     }
+//delete user/student
+    @DeleteMapping(path = "{studentId}")
+    public void deleteStudent(@PathVariable("studentId") Long studentId){
+        studentServices.deleteStudent(studentId);
 
-//    @ExceptionHandler(IllegalStateException.class)
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public String handleIllegalStateException(IllegalStateException e) {
-//        return e.getMessage();
-//    }
+    }
+
 
 }
