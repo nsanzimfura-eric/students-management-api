@@ -1,12 +1,9 @@
 package com.example.demo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @RestController
@@ -23,5 +20,17 @@ public class StudentController {
     public List<Student> getListOfStudents(){
         return  this.studentServices.getStudents();
     }
+
+    @PostMapping
+    public  void  registerNewStudent (@RequestBody Student student){
+        studentServices.addNewStudent(student);
+
+    }
+
+//    @ExceptionHandler(IllegalStateException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    public String handleIllegalStateException(IllegalStateException e) {
+//        return e.getMessage();
+//    }
 
 }
